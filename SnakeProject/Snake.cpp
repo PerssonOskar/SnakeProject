@@ -1,6 +1,7 @@
 #include "Snake.h"
 #include "SFML\Graphics.hpp"
 
+
 Snake::Snake()
 {
 	this->capacity = capacity;
@@ -8,6 +9,15 @@ Snake::Snake()
 	this->size = 0;
 	this->direction = direction;
 	this->speed = speed;
+
+	//if (!texture.loadFromFile("body_snake.png", sf::IntRect(10, 10, 32, 32)))
+	//{
+	//	// error...
+	//}
+
+	texture.loadFromFile("body_snake.png", sf::IntRect(10, 10, 32, 32));
+
+	sprite.setTexture(texture);
 
 }
 
@@ -38,10 +48,5 @@ void Snake::update(float time)
 
 void Snake::draw(sf::RenderTarget & t, sf::RenderStates & s) const
 {
-	Segments[size].setFillColor(sf::Color::Yellow);
-
-	for (int i = 0; i < this->size; i++)
-	{
-
-	}
+	
 }
