@@ -1,14 +1,26 @@
 #include "Snake.h"
 #include "SFML\Graphics.hpp"
+#define CAP 10
 
 
 Snake::Snake()
 {
-	this->capacity = capacity;
-	this->Segments = new sf::RectangleShape[capacity];
+	this->capacity = CAP;
+	this->Segments = new SnakeBody[CAP];
 	this->size = 0;
-	this->direction = direction;
+	this->direction = Up;
 	this->speed = speed;
+
+	for (int i = 0; i < 3; i++)
+	{
+		Segments[i].setPosition({ 200, 100 + 32 * i });
+	}
+
+
+	//Behöver göra: huvudet ska placeras, 
+
+
+
 
 	//if (!texture.loadFromFile("body_snake.png", sf::IntRect(10, 10, 32, 32)))
 	//{
@@ -26,27 +38,66 @@ Snake::~Snake()
 	delete[] Segments;
 }
 
-void Snake::update(float time)
+void Snake::addBodyPart()
+{
+}
+
+void Snake::setDirection(Direction setDir)
+{
+
+}
+
+void Snake::update()
 {
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 	{
-		direction = { -0.1f, 0.0f };
+		direction = Left;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
 	{
-		direction = { 0.1f, 0.0f };
+		direction = Right;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
 	{
-		direction = { 0.0f, -0.1f };
+		direction = Up;
 	}
 	else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
 	{
-		direction = { 0.0f, 0.1f };
+		direction = Down;
 	}
 }
 
-void Snake::draw(sf::RenderTarget & t, sf::RenderStates & s) const
+void Snake::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
-	
+
+	for (int i = 0; i < 3; i++)
+	{
+		t.draw(Segments[i]);
+	}
+	/*
+	*	for(alla bodyparts)
+	*	{
+	*		t.draw(segments[i].getSprite());
+	*	}
+	*/
+}
+
+void Snake::move()
+{
+	switch (direction)
+	{
+	case Left:
+		sf::Vector2f dir = Segments[positionUpdater]
+		Segments[positionUpdater].setPosition(sf::Vector2i(-1,0));
+		break;
+	case Right:
+		Segments[positionUpdater].setPosition(sf::Vector2i(1, 0));
+		break;
+	case Up:
+		Segments[positionUpdater].setPosition(sf::Vector2i(0, -1));
+		break;
+	case Down:
+		Segments[positionUpdater].setPosition(sf::Vector2i(0, 1));
+		break;
+	}
 }

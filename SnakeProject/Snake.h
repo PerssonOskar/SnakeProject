@@ -2,16 +2,22 @@
 #define SNAKE_H
 #include "SFML\Graphics.hpp"
 #include "SnakeBody.h"
-#include "SnakeHead.h"
+//#include "SnakeHead.h"
 #include <iostream>
+
+enum Direction {Up, Right, Down, Left};
+enum Bool {True, False};
 
 class Snake : public sf::Drawable
 {
 private: 
-	sf::RectangleShape* Segments;
+
+	int positionUpdater;
+	SnakeBody* Segments;
 	int size;
 	int capacity;
-	sf::Vector2f direction;
+	//sf::Vector2f direction;
+	Direction direction;
 	float speed;
 
 	sf::Texture texture;
@@ -28,8 +34,11 @@ public:
 	Snake();
 	~Snake();
 
-	void update(float time);
-	void draw(sf::RenderTarget& t, sf::RenderStates& s) const;
+	void addBodyPart();
+	void setDirection(Direction setDir);
+
+	void update();
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 	void move();
 
 };

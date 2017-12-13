@@ -1,18 +1,22 @@
 #include <sfml/Graphics.hpp>
+#include "Snake.h"
 
 int main()
 {
 	sf::RenderWindow window(sf::VideoMode(500, 500), "Snake", sf::Style::Close | sf::Style::Titlebar);
 	sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
 	//player.setFillColor(sf::Color::Green);
-	player.setPosition(200.0f, 200.0f);
+	player.setPosition(000.0f, 200.0f);
 
-	sf::Texture plTxture;
+	/*sf::Texture plTxture;
 	plTxture.loadFromFile("head_snake.png");
-	player.setTexture(&plTxture);
+	player.setTexture(&plTxture);*/
 	
+	Snake theSnake;
 
-	sf::Vector2f dir = { 0,0 };
+	window.draw(theSnake);
+
+	//sf::Vector2f dir = { 0,0 };
 
 	      
 	while (window.isOpen())
@@ -35,11 +39,11 @@ int main()
 			
 		
 		
-			player.move(dir);
+		///	player.move(direc);
 		
 
 		window.clear();
-		window.draw(player);
+		window.draw(theSnake);
 		window.display();
 	}
 
