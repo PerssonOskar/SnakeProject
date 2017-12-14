@@ -8,14 +8,21 @@ private:
 	
 
 	//sf::RectangleShape recShape;
-	sf::Texture texture;
-	sf::Sprite sprite;
+	/*sf::Texture texture;
+	sf::Sprite sprite;*/
 
 	sf::Vector2i pos;
 
 	// Update:
 	// 1. Uppdatera position i pos.
 	// 2. "Kasta" in pos i sprite.position(??)
+
+	//sf::Texture bodyTexture;
+	//sf::Texture headTexture;
+	
+	sf::Sprite sprite;
+
+
 
 	sf::Vector2f convertPosi(sf::Vector2i pos);
 
@@ -30,7 +37,7 @@ public:
 	
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 
-	void setTexture(sf::Texture);
+	void setTexture(sf::Texture texture);
 };
 
 #endif // !SNAKEHEAD_H

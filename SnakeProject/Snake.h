@@ -6,7 +6,6 @@
 #include <iostream>
 
 enum Direction {Up, Right, Down, Left};
-enum Bool {True, False};
 
 class Snake : public sf::Drawable
 {
@@ -19,12 +18,19 @@ private:
 	//sf::Vector2f direction;
 	Direction direction;
 	float speed;
+	bool head;
+	//int partIndex;
 
-	sf::Texture texture;
-	//texture.loadFromFile("body_snake.png");
-	sf::Sprite sprite;
+	/*sf::Texture bodyTexture;
+	sf::Texture headTexture;
+	sf::Sprite sprite;*/
 	
 	//std::string playerName
+
+	sf::Texture bodyTexture;
+	sf::Texture headTexture;
+	/*sf::Sprite bodySprite;
+	sf::Sprite headSprite;*/
 
 
 	//sf::Texture playerTexture;
@@ -34,10 +40,12 @@ public:
 	Snake();
 	~Snake();
 
+	sf::Vector2i getHeadPosition() const;
+
 	void addBodyPart();
 	void setDirection(Direction setDir);
 
-	void update();
+	void update(Direction lastDirection);
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 	void move();
 
