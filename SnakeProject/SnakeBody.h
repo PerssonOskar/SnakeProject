@@ -22,8 +22,6 @@ private:
 	
 	sf::Sprite sprite;
 
-
-
 	sf::Vector2f convertPosi(sf::Vector2i pos);
 
 public:
@@ -34,10 +32,11 @@ public:
 	sf::Sprite getSprite() const;
 	sf::Vector2i getPosition() const;
 	void setPosition(sf::Vector2i newPosi);
+	void setHeadPosition(sf::Vector2i newHeadPos);
 	
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 
-	void setTexture(sf::Texture texture);
+	void setTexture(sf::Texture& texture);
 };
 
 #endif // !SNAKEHEAD_H

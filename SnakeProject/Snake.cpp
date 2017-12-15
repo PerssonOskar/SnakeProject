@@ -3,6 +3,12 @@
 #define CAP 10
 
 
+sf::Vector2f Snake::converHeadtPosi(sf::Vector2i pos)
+{
+	sf::Vector2f convertedPosToPixel = sf::Vector2f((pos.x * 32), (pos.y * 32));
+	return convertedPosToPixel;
+}
+
 Snake::Snake()
 {
 	this->capacity = CAP;
@@ -15,7 +21,7 @@ Snake::Snake()
 	
 	for (int i = 0; i < size; i++)
 	{
-		Segments[i].setPosition({ 4, 4 * i });
+		Segments[i].setPosition({ 1, 1 * i });
 	}
 
 
@@ -25,7 +31,7 @@ Snake::Snake()
 	headTexture.loadFromFile("head_snake.png", sf::IntRect(0, 0, 32, 32));
 	
 	Segments[0].setTexture(headTexture);
-	for (int i = 0; i < size; i++)
+	for (int i = 1; i < size; i++)
 	{
 		Segments[i].setTexture(bodyTexture);
 	}
@@ -116,32 +122,53 @@ void Snake::move()
 	{
 	case Left:
 		//sf::Vector2f dir = Segments[positionUpdater]
-		Segments[positionUpdater].setPosition(getHeadPosition());
+		Segments[positionUpdater].setHeadPosition(getHeadPosition());
 		Segments[0].setPosition(sf::Vector2i(-1, 0));
-		positionUpdater = (positionUpdater--) % size;
+		positionUpdater = positionUpdater- 1;
 		if (positionUpdater == 0)
 			positionUpdater = (size - 1);
 		break;
 	case Right:
-		Segments[positionUpdater].setPosition(getHeadPosition());
+		Segments[positionUpdater].setHeadPosition(getHeadPosition());
 		Segments[0].setPosition(sf::Vector2i(1, 0));
-		positionUpdater = (positionUpdater--) % size;
+		positionUpdater = positionUpdater - 1;
 		if (positionUpdater == 0)
 			positionUpdater = (size - 1);
 		break;
 	case Up:
-		Segments[positionUpdater].setPosition(getHeadPosition());
+		Segments[positionUpdater].setHeadPosition(getHeadPosition());
 		Segments[0].setPosition(sf::Vector2i(0, -1));
-		positionUpdater = (positionUpdater--) % size;
+		positionUpdater = positionUpdater - 1;
 		if (positionUpdater == 0)
 			positionUpdater = (size - 1);
 		break;
 	case Down:
-		Segments[positionUpdater].setPosition(getHeadPosition());
+		Segments[positionUpdater].setHeadPosition(getHeadPosition());
 		Segments[0].setPosition(sf::Vector2i(0, 1));
-		positionUpdater = (positionUpdater--) % size;
+		positionUpdater = positionUpdater - 1;
 		if (positionUpdater == 0)
 			positionUpdater = (size - 1);
 		break;
+	}
+}
+
+Direction Snake::Kill() const
+{
+	Direction killDirection = Stop;
+	return killDirection;
+}
+
+void Snake::checkCollission()
+{
+	sf::Vector2f rightX(960.0f, 0.0f);
+	sf::Vector2f leftX(0.0f, 0.0f);
+	sf::Vector2f upperY(0.0f, 640.0f);
+	sf::Vector2f lowerY(0.0f, 0.0f);
+
+	sf::Vector2f headPos = converHeadtPosi(getHeadPosition());
+
+	if (headPos.x >= rightX.x || headPos.x <= leftX.x || headPos.y >= upperY.y || headPos.y <= lowerY.y)
+	{
+		Kill();
 	}
 }

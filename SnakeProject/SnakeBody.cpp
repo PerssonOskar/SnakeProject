@@ -2,7 +2,7 @@
 
 sf::Vector2f SnakeBody::convertPosi(sf::Vector2i pos)
 {
-	sf::Vector2f convertedPosToPixel = sf::Vector2f((pos.x * 16), (pos.y*16));
+	sf::Vector2f convertedPosToPixel = sf::Vector2f((pos.x * 32), (pos.y*32));
 	return convertedPosToPixel;
 }
 
@@ -10,7 +10,7 @@ SnakeBody::SnakeBody(sf::Vector2i pos)
 {
 	this->pos = pos;
 	
-	sprite.setOrigin(sf::Vector2f(16, 16));
+	sprite.setOrigin(sf::Vector2f(-320, -160 ));
 	
 	
 	
@@ -41,10 +41,16 @@ void SnakeBody::setPosition(sf::Vector2i newPosi)
 	this->pos += newPosi;
 
 	sprite.setPosition(this->convertPosi(this->pos));
-
+	//sprite.setPosition((sf::Vector2f)pos);
 	// Update pos i given direction, ett FIXED antal steg
 	// pos (vector2i), ska innehålla box-index (ex x:[0,39], y:[0,19] (Med ett fönster på 400x200 pixlar där varje box är 10x10 pixlar
 	// sprite.pos, ska innehålla PIXEL-positionen i ditt window. 
+}
+
+void SnakeBody::setHeadPosition(sf::Vector2i newHeadPos)
+{
+	this->pos = newHeadPos;
+	sprite.setPosition(this->convertPosi(this->pos));
 }
 
 void SnakeBody::draw(sf::RenderTarget & t, sf::RenderStates s) const
@@ -52,7 +58,7 @@ void SnakeBody::draw(sf::RenderTarget & t, sf::RenderStates s) const
 	t.draw(sprite);
 }
 
-void SnakeBody::setTexture(sf::Texture texture)
+void SnakeBody::setTexture(sf::Texture& texture)
 {
 	sprite.setTexture(texture);
 }

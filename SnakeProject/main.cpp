@@ -1,8 +1,13 @@
 #include <sfml/Graphics.hpp>
 #include "Snake.h"
+#include "food.h"
+#include <math.h>
+#include <ctime>
 
 int main()
 {
+	srand(time(0));
+
 	sf::Clock clock;
 
 	sf::RenderWindow window(sf::VideoMode(960, 640), "Snake", sf::Style::Close | sf::Style::Titlebar);
@@ -15,9 +20,10 @@ int main()
 	player.setTexture(&plTxture);*/
 	
 	Snake theSnake;
+	food theFood;
 	float dt;
 	float timeSinceLastFrame;
-	Direction lastDirection = Right;
+	Direction lastDirection = Non;
 
 	window.draw(theSnake);
 
@@ -42,32 +48,34 @@ int main()
 				window.close();*/
 		}
 
-		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+		Direction ifAlive = theSnake.Kill();
+		while (ifAlive != Stop)
 		{
-			lastDirection = Left;
-			
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
-		{
-			lastDirection = Right;
-			
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
-		{
-			lastDirection = Up;
-			//move();
-		}
-		else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
-		{
-			lastDirection = Down;
-			//move();
-		}
+			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
+			{
+				lastDirection = Left;
 
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::D))
+			{
+				lastDirection = Right;
+
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::W))
+			{
+				lastDirection = Up;
+			}
+			else if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::S))
+			{
+				lastDirection = Down;
+			}
+		}
+		
 		dt = clock.restart().asSeconds();
 		timeSinceLastFrame += dt;
 		
 
-		if (timeSinceLastFrame > 1.f)
+		if (timeSinceLastFrame > 0.5f)
 		{
 			///	player.move(direc);
 			theSnake.update(lastDirection);
@@ -76,6 +84,7 @@ int main()
 
 		window.clear();
 		window.draw(theSnake);
+		window.draw(theFood);
 		window.display();
 	}
 

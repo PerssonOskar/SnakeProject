@@ -11,6 +11,12 @@ private:
 public:
 	food();
 	~food();
+
+	sf::Vector2f randPosition() const;
+
+	void update();
+	void setFoodPosition();
+	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 };
 
 #endif // !FOOD_H
