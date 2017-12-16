@@ -18,10 +18,11 @@ Snake::Snake()
 	this->speed = speed;
 	this->positionUpdater = (size-1);
 
-	
+	int positionCounter = 10;
 	for (int i = 0; i < size; i++)
 	{
-		Segments[i].setPosition({ 1, 1 * i });
+		Segments[i].setPosition({ 15, 1 * positionCounter });
+		positionCounter++;
 	}
 
 
@@ -158,17 +159,27 @@ Direction Snake::Kill() const
 	return killDirection;
 }
 
-void Snake::checkCollission()
+Direction Snake::checkCollission()
 {
+	Direction retDirection = Non;
+
 	sf::Vector2f rightX(960.0f, 0.0f);
 	sf::Vector2f leftX(0.0f, 0.0f);
-	sf::Vector2f upperY(0.0f, 640.0f);
-	sf::Vector2f lowerY(0.0f, 0.0f);
+	sf::Vector2f upperY(0.0f, 0.0f);
+	sf::Vector2f lowerY(0.0f, 640.0f);
 
 	sf::Vector2f headPos = converHeadtPosi(getHeadPosition());
+	sf::Vector2f headPosDownRight = converHeadtPosi(getHeadPosition());
+	headPosDownRight += sf::Vector2f(32, 32);
 
-	if (headPos.x >= rightX.x || headPos.x <= leftX.x || headPos.y >= upperY.y || headPos.y <= lowerY.y)
+	if (headPos.x >= rightX.x || headPos.x <= leftX.x || headPos.y <= upperY.y || headPos.y >= lowerY.y)
 	{
-		Kill();
+		retDirection = Kill();
 	}
+	if (headPosDownRight.x >= rightX.x || headPosDownRight.x <= leftX.x || headPosDownRight.y <= upperY.y || headPosDownRight.y >= lowerY.y)
+	{
+		retDirection = Kill();
+	}
+
+	return retDirection;
 }

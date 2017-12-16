@@ -5,14 +5,19 @@
 class food : public sf::Drawable
 {
 private:
+
+	//sf::Vector2i foodPos;
+
 	sf::Texture foodTexture;
 	sf::Sprite spritefood;
+
 
 public:
 	food();
 	~food();
 
 	sf::Vector2f randPosition() const;
+	sf::Vector2f getFoodPosition() const;
 
 	void update();
 	void setFoodPosition();

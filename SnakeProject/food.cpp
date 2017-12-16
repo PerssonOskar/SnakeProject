@@ -7,6 +7,12 @@ food::food()
 
 	spritefood.setTexture(foodTexture);
 
+	float xPos = float(rand() % int(640));
+	float yPos = float(rand() % int(200));
+	sf::Vector2f randPos = sf::Vector2f(xPos, yPos);
+	
+	spritefood.setPosition(randPos);
+
 	//spritefood.setOrigin(sf::Vector2f(float(rand() % int(640)), float(rand() % int(200))));
 }
 
@@ -20,6 +26,11 @@ sf::Vector2f food::randPosition() const
 	float yPos = float(rand() % int(200));
 	sf::Vector2f randPos = sf::Vector2f(xPos, yPos);
 	return randPos;
+}
+
+sf::Vector2f food::getFoodPosition() const
+{
+	return this->spritefood.getPosition();
 }
 
 void food::update()

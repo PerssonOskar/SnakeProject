@@ -44,6 +44,7 @@ public:
 
 	sf::Vector2i getHeadPosition() const;
 	Direction Kill() const;
+	Direction checkCollission();
 
 	void addBodyPart();
 	void setDirection(Direction setDir);
@@ -53,7 +54,7 @@ public:
 	void move();
 	
 
-	void checkCollission();
+	
 };
 
 #endif

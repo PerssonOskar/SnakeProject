@@ -1,8 +1,10 @@
 #include <sfml/Graphics.hpp>
 #include "Snake.h"
 #include "food.h"
+#include "Game.h"
 #include <math.h>
 #include <ctime>
+#include <iostream>
 
 int main()
 {
@@ -11,21 +13,21 @@ int main()
 	sf::Clock clock;
 
 	sf::RenderWindow window(sf::VideoMode(960, 640), "Snake", sf::Style::Close | sf::Style::Titlebar);
-	sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
-	//player.setFillColor(sf::Color::Green);
-	player.setPosition(000.0f, 200.0f);
+	/*sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
+	player.setPosition(000.0f, 200.0f);*/
 
 	/*sf::Texture plTxture;
 	plTxture.loadFromFile("head_snake.png");
 	player.setTexture(&plTxture);*/
-	
-	Snake theSnake;
-	food theFood;
+	Game theGame;
+
+	//Snake theSnake;
+	//food theFood;
 	float dt;
 	float timeSinceLastFrame;
-	Direction lastDirection = Non;
+	//Direction lastDirection = Non;
 
-	window.draw(theSnake);
+	//window.draw(theSnake);
 
 	//sf::Vector2f dir = { 0,0 };
 
@@ -47,10 +49,19 @@ int main()
 			/*if (event.type == event.Closed)
 				window.close();*/
 		}
+		
 
-		Direction ifAlive = theSnake.Kill();
-		while (ifAlive != Stop)
+
+		//Ändra nedastående till game klassen---------------------
+		/*Direction ifAlive = Non;
+		ifAlive = theSnake.checkCollission();
+		Direction collFood;
+		collFood = theGame.checkCollisionfood();
+
+		std::cout << std::to_string(ifAlive) << std::endl;
+		if(ifAlive != Stop)
 		{
+			
 			if (sf::Keyboard::isKeyPressed(sf::Keyboard::Key::A))
 			{
 				lastDirection = Left;
@@ -69,8 +80,15 @@ int main()
 			{
 				lastDirection = Down;
 			}
+
 		}
+		else
+		{
+			lastDirection = Stop;
+		}*/
 		
+		theGame.update();
+
 		dt = clock.restart().asSeconds();
 		timeSinceLastFrame += dt;
 		
@@ -78,13 +96,14 @@ int main()
 		if (timeSinceLastFrame > 0.5f)
 		{
 			///	player.move(direc);
-			theSnake.update(lastDirection);
+			//theSnake.update(theGame.getLastDirection());
+			theGame.move();
 			timeSinceLastFrame = 0;
 		}
 
 		window.clear();
-		window.draw(theSnake);
-		window.draw(theFood);
+		window.draw(theGame);
+		//window.draw(theFood);
 		window.display();
 	}
 

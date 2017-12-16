@@ -10,7 +10,7 @@ SnakeBody::SnakeBody(sf::Vector2i pos)
 {
 	this->pos = pos;
 	
-	sprite.setOrigin(sf::Vector2f(-320, -160 ));
+	sprite.setOrigin(sf::Vector2f(0, 0));
 	
 	
 	
