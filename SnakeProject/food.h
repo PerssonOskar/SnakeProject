@@ -11,12 +11,13 @@ private:
 	sf::Texture foodTexture;
 	sf::Sprite spritefood;
 
+	sf::Vector2f convertPosi(sf::Vector2i pos);
 
 public:
 	food();
 	~food();
 
-	sf::Vector2f randPosition() const;
+	sf::Vector2f randPosition();
 	sf::Vector2f getFoodPosition() const;
 
 	void update();

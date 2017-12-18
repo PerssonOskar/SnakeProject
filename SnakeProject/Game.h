@@ -9,7 +9,8 @@ private:
 	Snake LeSnake;
 	food LeFood;
 	Direction lastDirection;
-	Direction ifAlive;
+	Direction ifAliveWall;
+	Direction ifAliveSnake;
 	Direction collFood;
 		
 	//skapa klass food, ska innehåla position och sprite, också bheöva funktion som ändrar då äten

@@ -14,6 +14,7 @@ private:
 	int positionUpdater;
 	SnakeBody* Segments;
 	int size;
+	int addedIndex;
 	int capacity;
 	//sf::Vector2f direction;
 	Direction direction;
@@ -44,7 +45,8 @@ public:
 
 	sf::Vector2i getHeadPosition() const;
 	Direction Kill() const;
-	Direction checkCollission();
+	Direction checkWallCollission();
+	Direction checkSnakeCollision();
 
 	void addBodyPart();
 	void setDirection(Direction setDir);
@@ -52,7 +54,7 @@ public:
 	void update(Direction lastDirection);
 	void draw(sf::RenderTarget& t, sf::RenderStates s) const;
 	void move();
-	
+	void Expand();
 
 	
 };

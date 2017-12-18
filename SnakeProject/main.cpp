@@ -96,7 +96,7 @@ int main()
 		if (timeSinceLastFrame > 0.5f)
 		{
 			///	player.move(direc);
-			//theSnake.update(theGame.getLastDirection());
+
 			theGame.move();
 			timeSinceLastFrame = 0;
 		}

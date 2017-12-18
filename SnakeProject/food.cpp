@@ -1,15 +1,26 @@
 #include "food.h"
 #include <math.h>
 
+sf::Vector2f food::convertPosi(sf::Vector2i pos)
+{
+	sf::Vector2f convertedPosToPixel = sf::Vector2f((pos.x * 32), (pos.y * 32));
+	return convertedPosToPixel;
+}
+
 food::food()
 {
 	foodTexture.loadFromFile("food_snake.png", sf::IntRect(0, 0, 32, 32));
 
 	spritefood.setTexture(foodTexture);
 
-	float xPos = float(rand() % int(640));
-	float yPos = float(rand() % int(200));
-	sf::Vector2f randPos = sf::Vector2f(xPos, yPos);
+	/*float xPos = float(rand() % int(640));
+	float yPos = float(rand() % int(200));*/
+	
+
+	int xCoPos = (rand() % 30);
+	int yCoPos = (rand() % 20);
+	sf::Vector2f randPos = convertPosi(sf::Vector2i(xCoPos, yCoPos));
+	
 	
 	spritefood.setPosition(randPos);
 
@@ -20,11 +31,11 @@ food::~food()
 {
 }
 
-sf::Vector2f food::randPosition() const
+sf::Vector2f food::randPosition()
 {
-	float xPos = float(rand() % int(640));
-	float yPos = float(rand() % int(200));
-	sf::Vector2f randPos = sf::Vector2f(xPos, yPos);
+	int xCoPos = (rand() % 30);
+	int yCoPos = (rand() % 20);
+	sf::Vector2f randPos = convertPosi(sf::Vector2i(xCoPos, yCoPos));
 	return randPos;
 }
 
