@@ -12,7 +12,8 @@ int main()
 
 	sf::Clock clock;
 
-	sf::RenderWindow window(sf::VideoMode(960, 640), "Snake", sf::Style::Close | sf::Style::Titlebar);
+	sf::RenderWindow window(sf::VideoMode(960, 672), "Snake", sf::Style::Close | sf::Style::Titlebar);
+	
 	/*sf::RectangleShape player(sf::Vector2f(100.0f, 100.0f));
 	player.setPosition(000.0f, 200.0f);*/
 

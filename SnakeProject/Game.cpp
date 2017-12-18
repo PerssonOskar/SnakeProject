@@ -101,6 +101,7 @@ void Game::draw(sf::RenderTarget & t, sf::RenderStates s) const
 {
 	t.draw(LeFood);
 	t.draw(LeSnake);
+	t.draw(LeHighScore);
 }
 
 void Game::checkCollisionfood()
@@ -118,21 +119,25 @@ void Game::checkCollisionfood()
 	{
 		LeFood.update();
 		LeSnake.addBodyPart();
+		LeHighScore.addToHighScore();
 	}
 	if (headPosRightDown.x >= foodPos.x && headPosRightDown.x <= foodPosRIghtDown.x && headPosRightDown.y >= foodPos.y && headPosRightDown.y <= foodPosRIghtDown.y)
 	{
 		LeFood.update();
 		LeSnake.addBodyPart();
+		LeHighScore.addToHighScore();
 	}
 	if (headPos.x >= foodPos.x && headPos.x <= foodPosRIghtDown.x && headPos.y >= foodPos.y && headPos.y <= foodPosRIghtDown.y)
 	{
 		LeFood.update();
 		LeSnake.addBodyPart();
+		LeHighScore.addToHighScore();
 	}
 	if (headPosRightDown.x >= foodPos.x && headPosRightDown.x <= foodPosRIghtDown.x && headPos.y >= foodPos.y && headPos.y <= foodPosRIghtDown.y)
 	{
 		LeFood.update(); 
 		LeSnake.addBodyPart();
+		LeHighScore.addToHighScore();
 	}
 
 

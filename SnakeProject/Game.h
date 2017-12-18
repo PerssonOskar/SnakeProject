@@ -2,12 +2,14 @@
 #define GAME_H
 #include "Snake.h"
 #include "food.h"
+#include "HighScore.h"
 
 class Game : public sf::Drawable
 {
 private:
 	Snake LeSnake;
 	food LeFood;
+	HighScore LeHighScore;
 	Direction lastDirection;
 	Direction ifAliveWall;
 	Direction ifAliveSnake;
