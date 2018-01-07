@@ -94,7 +94,7 @@ int main()
 		timeSinceLastFrame += dt;
 		
 
-		if (timeSinceLastFrame > 0.5f)
+		if (timeSinceLastFrame > 0.3f)
 		{
 			///	player.move(direc);
 

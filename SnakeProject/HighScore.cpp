@@ -1,6 +1,6 @@
 #include "HighScore.h"
 #include <string>
-
+#include <iostream>
 
 HighScore::HighScore()
 {
@@ -8,10 +8,16 @@ HighScore::HighScore()
 	scoreSprite.setTexture(highScoreTxt);
 	scoreSprite.setPosition(0.0f, 640.0f);
 
-	scoreFont.loadFromFile("arial.tff");
+	if (!scoreFont.loadFromFile("fonter.otf"))
+	{
+		std::cout << "Failure font" << std::endl;
+	}
+	
 	scoreText.setFont(scoreFont);
-	scoreText.setCharacterSize(20);
-	scoreText.setPosition(340.0f, 645.0f);
+	scoreText.setFillColor(sf::Color::Black);
+	scoreText.setCharacterSize(30);
+	scoreText.setPosition(340.0f, 640.0f);
+	scoreText.setString("U no $");
 
 
 

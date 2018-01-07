@@ -68,7 +68,7 @@ sf::Vector2i Snake::getHeadPosition() const
 
 void Snake::addBodyPart()
 {
-	sf::Vector2i lastPosCo = Segments[size-1].getPosition();
+	sf::Vector2i lastPosCo = Segments[positionUpdater+1].getPosition();
 	addedIndex = size;
 
 	if (size != capacity)
